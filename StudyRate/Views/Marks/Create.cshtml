@@ -1,0 +1,49 @@
+﻿@model StudyRate.Domain.Entities.Mark
+
+@{
+    ViewData["Title"] = "Додати оцінку | StudyRate";
+}
+
+<div id="content">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="StudentID" class="control-label"></label>
+                    <select asp-for="StudentID" class="form-control" asp-items="ViewBag.StudentID"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SubjectID" class="control-label"></label>
+                    <select asp-for="SubjectID" class="form-control" asp-items="ViewBag.SubjectID"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ControlTypeID" class="control-label"></label>
+                    <select asp-for="ControlTypeID" class="form-control" asp-items="ViewBag.ControlTypeID"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Score" class="control-label"></label>
+                    <input asp-for="Score" class="form-control" />
+                    <span asp-validation-for="Score" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Semester" class="control-label"></label>
+                    <input asp-for="Semester" class="form-control" />
+                    <span asp-validation-for="Semester" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DateAdded" class="control-label"></label>
+                    <input asp-for="DateAdded" class="form-control" />
+                    <span asp-validation-for="DateAdded" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Додати" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Попередня сторінка</a>
+    </div>
+</div>

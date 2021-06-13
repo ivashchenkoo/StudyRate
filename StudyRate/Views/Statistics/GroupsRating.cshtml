@@ -1,0 +1,74 @@
+﻿@model IQueryable<Mark>
+
+@{
+    ViewData["Title"] = "Рейтинг груп";
+}
+
+<div id="content">
+    <div class="inner">
+        <article class="box post post-excerpt">
+            <header>
+                <div>
+                    <h2><a href="#">Рейтинг груп</a></h2>
+                    @if (Model.Any())
+                    {
+                        var Model1 = Model.GroupBy(t => new { GroupID = t.Student.GroupID })
+                                    .Select(g => new { Average = g.Average(p => p.Score), Count = g.Count(), Id = g.Key.GroupID })
+                                    .OrderByDescending(el => el.Average);
+                        int i = 0;
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Факультет</th>
+                                        <th scope="col">Курс</th>
+                                        <th scope="col">Група</th>
+                                        <th scope="col">Кількість оцінок</th>
+                                        <th scope="col">Рейтинг</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var entity in Model1)
+                                    {
+                                        var ent = Model.FirstOrDefault(x => x.Student.GroupID == entity.Id);
+                                        <tr>
+                                            <th scope="row">@(++i)</th>
+                                            <td>@ent.Student.Group.Specialty.Faculty.ShortForm</td>
+                                            <td>@(DateTime.Now.Year - ent.Student.Group.YearOfEntering)</td>
+                                            <td>@ent.Student.Group.Name</td>
+                                            <td>@Model1.FirstOrDefault(x => x.Id == ent.Student.GroupID).Count</td>
+                                            <td>@Math.Round(Model1.FirstOrDefault(x => x.Id == ent.Student.GroupID).Average, 3)</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        i = 0;
+                    }
+                </div>
+                <div style="display: flex; justify-content:center;">
+                    <div style="max-height:400px;max-width:400px">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+
+            </header>
+        </article>
+    </div>
+</div>
+<script>
+    $(function () {
+        var myChart = new Chart(document.getElementById("myChart").getContext('2d'), {
+            type: 'pie',
+            data: {
+                labels: ["КН-1", "ДЗ-1", "ПР-1", "МБ-1", "КН-2"],
+                datasets: [{
+                    backgroundColor: ["#2ecc71", "#3498db", "#95a5a6", "#9b59b6", "#ff61d0"],
+                    data: [89.617, 85.5, 85.312, 81.333, 78.306]
+                }]
+            }
+        });
+    });
+
+</script>

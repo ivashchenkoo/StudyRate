@@ -1,0 +1,57 @@
+﻿@model StudyRate.Domain.Entities.Mark
+
+@{
+    ViewData["Title"] = "Видалити оцінку | StudyRate";
+}
+
+<div id="content">
+    <h3>Впевнені, що хочете видалити оцінку?</h3>
+    <div>
+        <h4>Оцінка</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Student)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Student.Id)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Subject)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Subject.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ControlType)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ControlType.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Score)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Score)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Semester)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Semester)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DateAdded)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DateAdded)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Видалити" class="btn btn-danger" /> |
+            <a asp-action="Index">Попередня сторінка</a>
+        </form>
+    </div>
+</div>

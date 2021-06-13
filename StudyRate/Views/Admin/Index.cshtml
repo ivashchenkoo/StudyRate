@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Панель адміністратора | StudyRate";
+}
+
+<div id="content">
+    <h1>Панель адміністратора</h1>
+    <div class="blockBox">
+        <div style="margin-top:20px;max-width:500px">
+            <form onsubmit="event.preventDefault()" class="box">
+                <input style="width:100%;margin-top:20px" type="submit" name="" value="Групи" onclick="location.href='@Url.Action("Index", "Groups")'">
+                <input style="width:100%;margin-top:20px" type="submit" name="" value="Студенти" onclick="location.href='@Url.Action("Index", "Students")'">
+                <input style="width:100%;margin-top:20px" type="submit" name="" value="Викладачі" onclick="location.href='@Url.Action("Index", "Professors")'">
+                <input style="width:100%;margin-top:20px" type="submit" name="" value="Навчальний план" onclick="location.href='@Url.Action("Index", "AcademicPlans")'">
+            </form>
+        </div>
+    </div>
+</div>

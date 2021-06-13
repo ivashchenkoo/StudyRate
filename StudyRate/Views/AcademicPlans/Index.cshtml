@@ -1,0 +1,68 @@
+﻿@model IEnumerable<StudyRate.Domain.Entities.AcademicPlan>
+
+@{
+    ViewData["Title"] = "Навчальні плани | StudyRate";
+}
+
+<div id="content">
+    <p>
+        <a asp-action="Create">Створити</a>
+    </p>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Group)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Subject)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Professor)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Hours)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CourseWork)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Semester)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Group.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subject.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Professor.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Hours)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CourseWork)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Semester)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Змінити</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Деталі</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Видалити</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

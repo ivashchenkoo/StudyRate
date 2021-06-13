@@ -1,0 +1,59 @@
+﻿@model StudyRate.Domain.Entities.AcademicPlan
+@{
+    ViewData["Title"] = "Імпорт оцінок | StudyRate";
+}
+
+<div class="blockBox1">
+    <h1 style="margin-left:20px">@ViewBag.Message</h1>
+    <div class="block1 block1_1">
+        <h1 style="margin-left:20px">Імпортування з Google Sheets</h1>
+        <div style="display: flex;">
+            <section class="box text-style1">
+                <div class="inner" style="font-size:20px;margin-right:20px;margin-left:20px">
+                    <p>Для імпортування даних з Google Sheets:</p>
+                    <ul>
+                        <li>Додати наступний Email <a href="#">sheets@mystical-vial-312818.iam.gserviceaccount.com</a> в читачі таблиці з оцінками</li>
+                        <li>Таблиця повинна мати два стовпня (1 - ім'я студента, 2 - оцінка)</li>
+                        <li>Обрати групу і предмет</li>
+                        <li>Ввести ID таблиці та назву листа у поля нижче</li>
+                        <li>Натистути кнопку Імпортування</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+        <div style="margin-top:20px;display:flex;justify-content:center">
+            <form asp-action="ImportGradesGSheet" asp-controller="Professor" method="post" class="box">
+                <select asp-for="GroupID" class="form-control" asp-items="ViewBag.GroupID" style="margin-bottom:20px" name="group"></select>
+                <select asp-for="SubjectID" class="form-control" asp-items="ViewBag.SubjectID" style="margin-bottom:20px" name="subject"></select>
+                <select class="form-control" asp-items="ViewBag.ControlTypeID" style="margin-bottom:20px" name="controlType"></select>
+                <input style="margin-bottom:20px;width:100%" type="Text" name="tableID" placeholder="ID таблиці">
+                <input style="margin-bottom:20px;width:100%" type="Text" name="sheet" placeholder="Назва листа">
+                <input style="width:100%" type="submit" value="Імпортування">
+            </form>
+        </div>
+    </div>
+    <div class="block1 block1_2">
+        <h1 style="margin-left:20px">Імпортування з MS Excel</h1>
+        <div style="display: flex;">
+            <section class="box text-style1">
+                <div class="inner" style="font-size:20px;margin-right:20px;margin-left:20px">
+                    <p>Для імпортування даних з MS Excel:</p>
+                    <ul>
+                        <li>Таблиця повинна мати два стовпня (1 - ім'я студента, 2 - оцінка)</li>
+                        <li>Обрати групу і предмет</li>
+                        <li>Натистути кнопку Імпортування</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+        <div style="margin-top:20px;display:flex;justify-content:center">
+            <form asp-action="ImportGradesExcel" asp-controller="Professor" method="post" class="box" name="excelimport"  enctype="multipart/form-data">
+                <select asp-for="GroupID" class="form-control" asp-items="ViewBag.GroupID" style="margin-bottom:20px" name="group"></select>
+                <select asp-for="SubjectID" class="form-control" asp-items="ViewBag.SubjectID" style="margin-bottom:20px" name="subject"></select>
+                <select class="form-control" asp-items="ViewBag.ControlTypeID" style="margin-bottom:20px" name="controlType"></select>
+                <input type="file" id="uploadedFile" name="uploadedFile" style="margin-bottom:20px" formenctype="multipart/form-data">
+                <input type="submit" value="Імпортування">
+            </form>
+        </div>
+    </div>
+</div>

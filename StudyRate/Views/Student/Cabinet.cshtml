@@ -1,0 +1,98 @@
+﻿@model IQueryable<Mark>
+
+@{
+    ViewData["Title"] = "Кабінет студента | StudyRate";
+    int i = 0;
+}
+
+<div id="content">
+    <h2><a href="#">Вітаємо, @ViewBag.FirstName @ViewBag.LastName!</a></h2>
+    <h2><a href="#">Твій середній бал @ViewBag.Rating</a></h2>
+    <div class="blockBox">
+        <div class="block block_1">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Рейтинг</th>
+                            <th scope="col">Місце</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Університет</th>
+                            <th scope="row">@ViewBag.UniversityRating</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">Факультет</th>
+                            <th scope="row">@ViewBag.FacultyRating</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">Потік</th>
+                            <th scope="row">@ViewBag.SpecialtyRating</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">Група</th>
+                            <th scope="row">@ViewBag.GroupRating</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="display: flex; justify-content:center;">
+                <section class="box text-style1">
+                    <div class="inner">
+                        <form onsubmit="event.preventDefault()" class="box">
+                            <p style="text-align:center;font-size:16px" class="text-muted">Додати свою електронну пошту</p>
+                            <input style="margin-bottom:20px;width:100%" type="email" name="" placeholder="Email">
+                            <input style="width:100%" type="submit" name="" value="Зберегти" href="#">
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="block block_2">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Дисципліна</th>
+                            <th scope="col">Семестр</th>
+                            <th scope="col">Екзамен</th>
+                            <th scope="col">Залік</th>
+                            <th scope="col">Курсова робота</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <th scope="row">@(++i)</th>
+                            <th scope="row">@item.Subject.Name</th>
+                            <th scope="row">@item.Semester</th>
+                            @if (item.ControlType.Name == "Екзамен")
+                            {
+                                <th scope="row">@item.Score</th>
+                                <th scope="row"></th>
+                                <th scope="row"></th>
+                            }
+                            else if (item.ControlType.Name == "Залік")
+                            {
+                                <th scope="row"></th>
+                                <th scope="row">@item.Score</th>
+                                <th scope="row"></th>
+                            }
+                            else if (item.ControlType.Name == "Курсова робота")
+                            {
+                                <th scope="row"></th>
+                                <th scope="row"></th>
+                                <th scope="row">@item.Score</th>
+                            }
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

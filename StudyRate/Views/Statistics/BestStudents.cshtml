@@ -1,0 +1,58 @@
+﻿@model IQueryable<Mark>
+
+@{
+    ViewData["Title"] = "Найкращі студенти";
+}
+
+<div id="content">
+    <div class="inner">
+        <article class="box post post-excerpt">
+            <header>
+                <div>
+                    <h2><a href="#">Найкращі студенти</a></h2>
+                    @if (Model.Any())
+                    {
+                        var Model1 = Model.GroupBy(t => new { StudentID = t.StudentID })
+                                    .Select(g => new { Average = g.Average(p => p.Score), Count = g.Count(), Id = g.Key.StudentID })
+                                    .OrderByDescending(el => el.Average);
+                        int i = 0;
+                        <div class="table-responsive-sm">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">ПІБ</th>
+                                        <th scope="col">Факультет</th>
+                                        <th scope="col">Група</th>
+                                        <th scope="col">Курс</th>
+                                        <th scope="col">Рік</th>
+                                        <th scope="col">Оцінок</th>
+                                        <th scope="col">Рейтинг</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var entity in Model1)
+                                    {
+                                        var ent = Model.FirstOrDefault(x => x.StudentID == entity.Id);
+                                        <tr>
+                                            <th scope="row">@(++i)</th>
+                                            <td>@ent.Student.FirstName @ent.Student.MiddleName @ent.Student.LastName</td>
+                                            <td>@ent.Student.Group.Specialty.Faculty.ShortForm</td>
+                                            <td>@ent.Student.Group.Name</td>
+                                            <td>@(DateTime.Now.Year - ent.Student.Group.YearOfEntering)</td>
+                                            <td>@ent.Student.Group.YearOfEntering</td>
+                                            <td>@Model1.FirstOrDefault(x => x.Id == ent.StudentID).Count</td>
+                                            <td>@Math.Round(Model1.FirstOrDefault(x => x.Id == ent.StudentID).Average, 3)</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        i = 0;
+                    }
+                </div>
+            </header>
+
+        </article>
+    </div>
+</div>

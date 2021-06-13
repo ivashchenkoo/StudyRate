@@ -1,0 +1,68 @@
+﻿@model Professor
+
+@{
+    ViewData["Title"] = "Кабінет викладача | StudyRate";
+}
+
+<div id="content">
+    <h2><a href="#">Вітаємо, @Model.LastName @Model.FirstName @Model.MiddleName!</a></h2>
+    <div class="box">
+        <div class="table-responsive">
+            <table class="table" style="max-width:700px;margin-top:20px">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Особисті дані</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Прізвище</th>
+                        <th scope="row">@Model.LastName</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Ім'я</th>
+                        <th scope="row">@Model.FirstName</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">По-батькові</th>
+                        <th scope="row">@Model.MiddleName</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Моб.телефон</th>
+                        <th scope="row">@Model.PhoneNumber</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Посада</th>
+                        <th scope="row">@Model.Position.Name</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Кафедра</th>
+                        <th scope="row">@Model.Department.Name</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Факультет</th>
+                        <th scope="row">@Model.Department.Faculty.Name</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Ел.пошта</th>
+                        <th scope="row">@Model.Email</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Пароль</th>
+                        <th scope="row">**************</th>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="@Url.Action("Edit", "Professor")">Редагувати особисті дані</a>
+        </div>
+        <div style="display: flex;max-width:700px;margin-top:20px">
+            <form onsubmit="event.preventDefault()" class="box">
+                <input style="width:100%" type="submit" name="" value="Виставити оцінки" onclick="location.href='@Url.Action("Index", "Marks")'">
+                <br />
+                <br />
+                <input style="width:100%" type="submit" name="" value="Імпортувати оцінки" onclick="location.href='@Url.Action("ImportGrades", "Professor")'">
+            </form>
+        </div>
+    </div>
+</div>

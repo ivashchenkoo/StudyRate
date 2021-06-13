@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Вхід в адмін панель | StudyRate";
+}
+
+<div id="content">
+    <section class="box text-style1">
+        <div class="inner" style="max-width:400px">
+            <form asp-action="Index" asp-controller="Admin" method="post" class="box">
+                <p style="text-align:center;font-size:16px" class="text-muted">Увійти як адміністратор!</p>
+                <input style="margin-bottom:20px;width:100%;color:black;" type="text" name="username" placeholder="Username">
+                <input style="margin-bottom:20px;width:100%;color:black;" type="password" name="password" id="password" placeholder="Password">
+                <input style="width:100%" type="submit" name="" value="Увійти">
+            </form>
+        </div>
+    </section>
+</div>

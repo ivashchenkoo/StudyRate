@@ -1,0 +1,85 @@
+﻿    <!-- Sidebar -->
+<div id="sidebar">
+
+    <h1 id="logo" onclick="openStat(event, 'Home', this)"><a href="@Url.Action("Index", "Home")">Study Rate</a></h1>
+    <nav id="nav">
+        <ul>
+            <li id="myque1" onclick="openStat(event, 'Найкращі студенти', this)"><a href="@Url.Action("BestStudents", "Statistics")">Найкращі студенти</a></li>
+            <li id="myque2" onclick="openStat(event, 'Рейтинг груп', this)"><a href="@Url.Action("GroupsRating", "Statistics")">Рейтинг груп</a></li>
+            <li id="myque3" onclick="openStat(event, 'Кількість студентів', this)"><a href="@Url.Action("SpecialtyRating", "Statistics")">Рейтинг спеціальностей</a></li>
+            <li id="myque4" onclick="openStat(event, 'Успішність університету', this)"><a href="@Url.Action("UniversityRating", "Statistics")">Рейтинг факультетів</a></li>
+        </ul>
+    </nav>
+    @if (Authorization.StudentId == 0 && Authorization.ProffesorId == 0 && Authorization.AdminId == 0)
+    {
+        <section class="box text-style1">
+            <div class="inner">
+                <form asp-action="Login" asp-controller="Student" method="post" class="box">
+                    <p class="text-muted" style="text-align:center;font-size:16px">Увійти як студент!</p>
+                    <input style="margin-bottom:20px;width:100%;color:black;" type="text" name="index" id="index" placeholder="Ідентиф. код">
+                    <input style="width:100%" type="submit" name="" value="Увійти">
+                </form>
+            </div>
+        </section>
+        <section class="box text-style1">
+            <div class="inner">
+                <form asp-action="Login" asp-controller="Professor" method="post" class="box">
+                    <p style="text-align:center;font-size:16px" class="text-muted">Увійти як викладач!</p>
+                    <input style="margin-bottom:20px;width:100%;color:black;" type="email" name="email" placeholder="Email">
+                    <input style="margin-bottom:20px;width:100%;color:black;" type="password" name="password" id="password" placeholder="Password">
+                    <input style="width:100%" type="submit" name="" value="Увійти">
+                </form>
+            </div>
+        </section>
+    }
+    @if (Authorization.StudentId != 0)
+    {
+        <section class="box text-style1">
+            <div class="inner">
+                <form onsubmit="event.preventDefault()" class="box">
+                    <input style="width:100%" type="submit" name="" value="Кабінет" onclick="location.href='@Url.Action("Cabinet", "Student")'">
+                    <input style="width:100%;margin-top:20px" type="button" value="Вийти" onclick="location.href='@Url.Action("Index", "Home", new { i = -1 }, null)'">
+                </form>
+            </div>
+        </section>
+    }
+    @if (Authorization.ProffesorId != 0)
+    {
+        <section class="box text-style1">
+            <div class="inner">
+                <form onsubmit="event.preventDefault()" class="box">
+                    <input style="width:100%" type="submit" name="" value="Кабінет" onclick="location.href='@Url.Action("Cabinet", "Professor")'">
+                    <input style="width:100%;margin-top:20px" type="button" value="Вийти" onclick="location.href='@Url.Action("Index", "Home", new { i = -1 }, null)'">
+                </form>
+            </div>
+        </section>
+    }
+    @if (Authorization.AdminId != 0)
+    {
+        <section class="box text-style1">
+            <div class="inner">
+                <form onsubmit="event.preventDefault()" class="box">
+                    <input style="width:100%" type="submit" name="" value="Кабінет" onclick="location.href='@Url.Action("Index", "Admin")'">
+                    <input style="width:100%;margin-top:20px" type="button" value="Вийти" onclick="location.href='@Url.Action("Index", "Home", new { i = -1 }, null)'">
+                </form>
+            </div>
+        </section>
+    }
+
+    <section class="box text-style1">
+        <div class="inner">
+            <p>
+                <strong>Study Rate:</strong> Електронний журнал, який дозволяє вести облік
+                успішності студентів університету.
+                <br />Прико
+                Designed by <a href="https://t.me/rockiee">Oleksandr Ivashchenko</a>
+            </p>
+        </div>
+    </section>
+
+    <ul id="copyright">
+        <li>&copy; <a href="https://t.me/rockiee">Oleksandr Ivashchenko</a></li>
+        <li><a href="https://t.me/rockiee">2021</a></li>
+    </ul>
+
+</div>

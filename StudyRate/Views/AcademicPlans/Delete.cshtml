@@ -1,0 +1,57 @@
+﻿@model StudyRate.Domain.Entities.AcademicPlan
+
+@{
+    ViewData["Title"] = "Навчальний план | StudyRate";
+}
+
+<div id="content">
+    <h3>Впевнені, що хочете видалити запис?</h3>
+    <div>
+        <h4>Навчальний план</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Group)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Group.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Subject)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Subject.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Professor)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Professor.Email)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Hours)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Hours)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CourseWork)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CourseWork)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Semester)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Semester)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Видалити" class="btn btn-default" /> |
+            <a asp-action="Index">Попередня сторінка</a>
+        </form>
+    </div>
+</div>

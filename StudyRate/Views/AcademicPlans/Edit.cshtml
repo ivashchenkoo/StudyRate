@@ -1,0 +1,58 @@
+﻿@model StudyRate.Domain.Entities.AcademicPlan
+
+@{
+    ViewData["Title"] = "Навчальний план | StudyRate";
+}
+
+<div id="content">
+    <h4>Навчальний план</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="GroupID" class="control-label"></label>
+                    <select asp-for="GroupID" class="form-control" asp-items="ViewBag.GroupID"></select>
+                    <span asp-validation-for="GroupID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SubjectID" class="control-label"></label>
+                    <select asp-for="SubjectID" class="form-control" asp-items="ViewBag.SubjectID"></select>
+                    <span asp-validation-for="SubjectID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ProfessorID" class="control-label"></label>
+                    <select asp-for="ProfessorID" class="form-control" asp-items="ViewBag.ProfessorID"></select>
+                    <span asp-validation-for="ProfessorID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Hours" class="control-label"></label>
+                    <input asp-for="Hours" class="form-control" />
+                    <span asp-validation-for="Hours" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input asp-for="CourseWork" /> @Html.DisplayNameFor(model => model.CourseWork)
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Semester" class="control-label"></label>
+                    <input asp-for="Semester" class="form-control" />
+                    <span asp-validation-for="Semester" class="text-danger"></span>
+                </div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <input type="submit" value="Зберегти" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Попередня сторінка</a>
+    </div>
+</div>
+

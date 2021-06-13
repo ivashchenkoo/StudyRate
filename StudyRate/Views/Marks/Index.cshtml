@@ -1,0 +1,64 @@
+﻿@model IEnumerable<StudyRate.Domain.Entities.Mark>
+
+@{
+    ViewData["Title"] = "Оцінки | StudyRate";
+}
+<div id="content">
+    <div class="inner">
+        <article class="box post post-excerpt">
+            <header>
+                <a asp-action="Create" >Ввести оцінку</a>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>
+                                    Студент
+                                </th>
+                                <th>
+                                    Предмет
+                                </th>
+                                <th>
+                                    Тип контролю
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Score)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Semester)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Student.FirstName) @Html.DisplayFor(modelItem => item.Student.LastName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Subject.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ControlType.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Score)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Semester)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-controller="Marks" asp-route-id="@item.Id">Змінити</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </header>
+        </article>
+    </div>
+</div>
+

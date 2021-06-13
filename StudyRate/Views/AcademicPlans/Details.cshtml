@@ -1,0 +1,54 @@
+﻿@model StudyRate.Domain.Entities.AcademicPlan
+
+@{
+    ViewData["Title"] = "Навчальний план | StudyRate";
+}
+
+<div id="content">
+    <div>
+        <h4>Навчальний план</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Group)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Group.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Subject)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Subject.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Professor)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Professor.FirstName) @Html.DisplayFor(model => model.Professor.LastName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Hours)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Hours)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CourseWork)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CourseWork)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Semester)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Semester)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Змінити</a> |
+        <a asp-action="Index">Попередня сторінка</a>
+    </div>
+</div>

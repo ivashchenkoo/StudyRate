@@ -1,0 +1,131 @@
+﻿@model IQueryable<Mark>
+
+<div id="content">
+    <div class="inner">
+        <article class="box post post-excerpt">
+
+            <!-- Tab content -->
+            <div class="tab">
+                <button class="tablinks" onclick="openCity(event, 'Москва')">Москва</button>
+                <button class="tablinks" onclick="openCity(event, 'Берлин')">Берлин</button>
+                <button class="tablinks" onclick="openCity(event, 'Пекин')">Пекин</button>
+            </div>
+
+            <div id="Москва" class="tabcontent">
+                <h3>Москва</h3>
+                <p>Москва это столица России.</p>
+            </div>
+
+            <div id="Берлин" class="tabcontent">
+                <h3>Берлин</h3>
+                <p>Берлин это столица Германии.</p>
+            </div>
+
+            <div id="Пекин" class="tabcontent">
+                <h3>Пекин</h3>
+                <p>Пекин это столица Китая.</p>
+            </div>
+            <header>
+                @if (Model.Any())
+                {
+                    var Model1 = Model.GroupBy(t => new { StudentID = t.StudentID })
+                                .Select(g => new { Average = g.Average(p => p.Score), Count = g.Count(), Id = g.Key.StudentID })
+                                .OrderByDescending(el => el.Average);
+                    int i = 0;
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">ПІБ</th>
+                                <th scope="col">Факультет</th>
+                                <th scope="col">Група</th>
+                                <th scope="col">Курс</th>
+                                <th scope="col">Рік</th>
+                                <th scope="col">Оцінок</th>
+                                <th scope="col">Рейтинг</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var entity in Model1)
+                            {
+                                var ent = Model.FirstOrDefault(x => x.StudentID == entity.Id);
+                                <tr>
+                                    <th scope="row">@(++i)</th>
+                                    <td>@ent.Student.FirstName @ent.Student.MiddleName @ent.Student.LastName</td>
+                                    <td>@ent.Student.Group.Specialty.Faculty.ShortForm</td>
+                                    <td>@ent.Student.Group.Name</td>
+                                    <td>@(DateTime.Now.Year - ent.Student.Group.YearOfEntering)</td>
+                                    <td>@ent.Student.Group.YearOfEntering</td>
+                                    <td>@Model1.FirstOrDefault(x => x.Id == ent.StudentID).Count</td>
+                                    <td>@Math.Round(Model1.FirstOrDefault(x => x.Id == ent.StudentID).Average, 3)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    i = 0;
+                }
+                <h2><a href="#">Welcome to Striped</a></h2>
+                <p>A free, fully responsive HTML5 site template by HTML5 UP</p>
+            </header>
+            <div class="info">
+                <span class="date"><span class="month">Jul<span>y</span></span> <span class="day">14</span><span class="year">, 2014</span></span>
+                <ul class="stats">
+                    <li><a href="#" class="icon fa-comment">16</a></li>
+                    <li><a href="#" class="icon fa-heart">32</a></li>
+                    <li><a href="#" class="icon brands fa-twitter">64</a></li>
+                    <li><a href="#" class="icon brands fa-facebook-f">128</a></li>
+                </ul>
+            </div>
+            <a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
+            <p>
+                <strong>Hello!</strong> You're looking at <strong>Striped</strong>, a fully responsive HTML5 site template designed by <a href="http://twitter.com/ajlkn">AJ</a>
+                for <a href="http://html5up.net">HTML5 UP</a> It features a clean, minimalistic design, styling for all basic page elements (including blockquotes, tables and lists), a
+                repositionable sidebar (left or right), and HTML5/CSS3 code designed for quick and easy customization (see code comments for details).
+            </p>
+            <p>
+                Striped is released for free under the <a href="http://html5up.net/license">Creative Commons Attribution license</a> so feel free to use it for personal projects
+                or even commercial ones &ndash; just be sure to credit <a href="http://html5up.net">HTML5 UP</a> for the design. If you like what you see here, be sure to check out
+                <a href="http://html5up.net">HTML5 UP</a> for more cool designs or follow me on <a href="http://twitter.com/ajlkn">Twitter</a> for new releases and updates.
+            </p>
+        </article>
+
+        <!-- Post -->
+        <article class="box post post-excerpt">
+            <header>
+                <h2><a href="#">Lorem ipsum dolor sit amet</a></h2>
+                <p>Feugiat interdum sed commodo ipsum consequat dolor nullam metus</p>
+            </header>
+            <div class="info">
+                <span class="date"><span class="month">Jul<span>y</span></span> <span class="day">8</span><span class="year">, 2014</span></span>
+                <ul class="stats">
+                    <li><a href="#" class="icon fa-comment">16</a></li>
+                    <li><a href="#" class="icon fa-heart">32</a></li>
+                    <li><a href="#" class="icon brands fa-twitter">64</a></li>
+                    <li><a href="#" class="icon brands fa-facebook-f">128</a></li>
+                </ul>
+            </div>
+            <a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
+            <p>
+                Quisque vel sapien sit amet tellus elementum ultricies. Nunc vel orci turpis. Donec id malesuada metus.
+                Nunc nulla velit, fermentum quis interdum quis, tate etiam commodo lorem ipsum dolor sit amet dolore.
+                Quisque vel sapien sit amet tellus elementum ultricies. Nunc vel orci turpis. Donec id malesuada metus.
+                Nunc nulla velit, fermentum quis interdum quis, convallis eu sapien. Integer sed ipsum ante.
+            </p>
+        </article>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <!--<a href="#" class="button previous">Previous Page</a>-->
+            <div class="pages">
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <span>&hellip;</span>
+                <a href="#">20</a>
+            </div>
+            <a href="#" class="button next">Next Page</a>
+        </div>
+
+    </div>
+</div>
